@@ -1,6 +1,12 @@
 # Idris-Number-Theory
 Elementary number theory written in Idris.
 
+Final Goal - To write a gcd function which gives the gcd of two numbers along with the proof that it is indeed the gcd.
+Next step - 1. To have a rigorous definition of positive natural numbers and rewrite the properties of divisiblity
+            ( Defining is done, rewrting is ongoing)
+            2. To create a separate file containing useful equalities to manipulate natural numbers
+
+
 --Modules
 
 logical implications - some logical relations which are provable in type theory
