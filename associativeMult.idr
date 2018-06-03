@@ -5,6 +5,8 @@ import associativePlus
 import commutativePlus
 import distributiveMultAdd
 
+%default total
+
 public export
 
 associativeMult' : (a : Nat) -> (b : Nat) -> (c : Nat) -> (mult a (mult b c) = mult (mult a b) c)

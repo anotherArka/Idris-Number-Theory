@@ -2,6 +2,8 @@ module logical_implications
 
 import coProductType
 
+%default total
+
 public export
 
 contrapositive : (prop1 -> prop2) -> (prop2 -> Void) -> (prop1 -> Void)

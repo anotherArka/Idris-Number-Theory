@@ -1,5 +1,7 @@
 module coProductType
 
+%default total
+
 public export
 
 coProduct : (A : Type) -> (B : Type) -> Type

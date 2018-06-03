@@ -10,6 +10,8 @@ import properties_of_Nat
 import properties_of_Positive_Nat
 import congruence
 
+%default total
+
 public export
 
 neq : Nat -> Nat -> Type
@@ -139,7 +141,27 @@ order_property13 (Z ** prf1) b prf2 = absurd prf1
 order_property13 ((S a) ** prfPos) Z prfEq = Refl
 order_property13 ((S a) ** prfPos) (S b) prfEq = void(Z_is_not_Sn (plus b (mult a (S b))) prfEq)  	
 
+public export
+data DecOrder : Nat -> Nat -> Type where
+    Grt : (prf : (geq a b, neq a b)) -> DecOrder a b
+    Lst : (prf : (leq a b, neq a b)) -> DecOrder a b
+    Eql : (prf : a = b) -> DecOrder a b
+    
 
+public export
+decOrder : (a : Nat) -> (b : Nat) -> DecOrder a b
+decOrder Z Z = Eql Refl
+decOrder Z (S a) = Lst (((S a) ** (rewrite commutativePlus a Z in Refl)), (Z_is_not_Sn a). symmetry)
+decOrder (S a) Z = Grt (((S a) ** (rewrite commutativePlus a Z in Refl)), Z_is_not_Sn a)
+decOrder (S a) (S b) = case (decOrder a b) of 
+                            Eql prfEq => Eql (cong prfEq)
+                            Grt ((k ** prfG), prfNq) => Grt ((k ** (rewrite commutativePlus k (S b) in 
+                                                                   (rewrite commutativePlus b k in cong prfG))), 
+                                                                   prfNq . (Sn_eq_Sm_implies_n_eq_m a b))
+                            Lst ((k ** prfL), prfNq) => Lst ((k ** (rewrite commutativePlus k (S a) in 
+                                                                   (rewrite commutativePlus a k in cong prfL))), 
+                                                                   prfNq . (Sn_eq_Sm_implies_n_eq_m a b))
+                            
                                                   
                                                                
                                                                       

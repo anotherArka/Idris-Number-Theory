@@ -2,6 +2,8 @@ module commutativePlus
 
 import associativePlus
 
+%default total
+
 public export
 
 plus_n_Z_is_n : (n : Nat) -> (n + 0) = (0 + n)

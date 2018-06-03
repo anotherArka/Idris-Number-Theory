@@ -9,6 +9,8 @@ import commutativeMult
 import logical_implications
 import properties_of_Nat
 
+%default total
+
 public export
 
 Positive_Nat : Type

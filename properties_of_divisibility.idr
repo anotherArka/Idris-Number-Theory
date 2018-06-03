@@ -11,7 +11,11 @@ import properties_of_order
 import properties_of_Nat
 import properties_of_order
 import properties_of_Positive_Nat
-import substractNat
+import difference
+import coProductType
+--import substractNat
+
+%default total
 
 public export
 
@@ -102,6 +106,31 @@ public export
 
 complete_divide : (a : Nat) -> (b : Positive_Nat) -> (Divides b a) -> (ans ** (mult ans (toNatural b) = a))
 complete_divide a (b ** prfP) (k ** prfD) = (k ** prfD)
+
+
+||| Property 9 - Given two natural numbers a and b. If d divides a and b then d divides a - b
+public export
+
+div_property9 : (a : Nat) -> (b : Nat) -> (d : Positive_Nat) -> (Divides d a) -> (Divides d b) -> (Divides d (difference a b))
+div_property9 a Z (d ** prfPos) (k ** prfDa) (l ** prfDb) = (rewrite diff_property1 a in (k ** prfDa))
+div_property9 Z b (d ** prfPos) (k ** prfDa) (l ** prfDb) = (l ** prfDb)
+div_property9 a b (d ** prfPos) (k ** prfDa) (l ** prfDb) = ((difference k l) ** (rewrite distributiveDiffMult k l d in 
+                                                                                 (rewrite prfDa in 
+                                                                                 (rewrite prfDb in Refl))))
+                                                                                 
+||| Property 10 - Given two natural numbers a and b. If d divides a and a - b then d divides a
+public export
+
+div_property10 : (a : Nat) -> (b : Nat) -> (d : Positive_Nat) -> (Divides d a) -> (Divides d (difference a b)) -> (Divides d b)
+div_property10 a b (d ** prfPosD) (k ** divDA) (l ** divDdif) = case (diff_property2 a b) of 
+                                                                     (True ** prfDif1) => ((plus l k) ** (rewrite distributiveAddMult l k d in 
+                                                                                                         (rewrite divDA in 
+                                                                                                         (rewrite divDdif in prfDif1))))
+                                                                     (False ** prfDif2) => ((difference k l) ** (rewrite distributiveDiffMult k l d in
+                                                                                                                (rewrite divDA in 
+                                                                                                                (rewrite divDdif in 
+                                                                                                                (rewrite diff_property7 a b prfDif2 in
+                                                                                                                 Refl)))))
 
 
 
