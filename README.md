@@ -2,9 +2,14 @@
 Elementary number theory written in Idris.
 
 Final Goal - To write a gcd function which gives the gcd of two numbers along with the proof that it is indeed the gcd.
+
 Next step - 1. To identify several important properties of natural numbers and prove them in idris
+
             2. To create a separate file containing useful equalities to manipulate natural numbers
+            
             3. Find a total definition of Gcd
+            
+            
 
 --Modules
 
