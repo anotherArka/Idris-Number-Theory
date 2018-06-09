@@ -6,8 +6,6 @@ import commutativePlus
 import distributiveMultAdd
 import associativeMult
 
-%default total
-
 public export
 
 mult_n_1_is_n : (n : Nat) -> (mult n 1) = n

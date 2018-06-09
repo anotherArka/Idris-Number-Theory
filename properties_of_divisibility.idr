@@ -15,8 +15,6 @@ import difference
 import coProductType
 --import substractNat
 
-%default total
-
 public export
 
 Divides : Positive_Nat -> Nat -> Type

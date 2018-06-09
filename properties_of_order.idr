@@ -10,8 +10,6 @@ import properties_of_Nat
 import properties_of_Positive_Nat
 import congruence
 
-%default total
-
 public export
 
 neq : Nat -> Nat -> Type
@@ -147,7 +145,6 @@ data DecOrder : Nat -> Nat -> Type where
     Lst : (prf : (leq a b, neq a b)) -> DecOrder a b
     Eql : (prf : a = b) -> DecOrder a b
     
-
 public export
 decOrder : (a : Nat) -> (b : Nat) -> DecOrder a b
 decOrder Z Z = Eql Refl
@@ -162,7 +159,18 @@ decOrder (S a) (S b) = case (decOrder a b) of
                                                                    (rewrite commutativePlus a k in cong prfL))), 
                                                                    prfNq . (Sn_eq_Sm_implies_n_eq_m a b))
                             
-                                                  
+||| Property 14 - If k >= l then k + m > l
+public export
+order_property14 : (k : Nat) -> (l : Nat) -> (m : Nat) -> (geq k l) -> (geq (plus m k) l)
+order_property14 k l m (n ** prfG) = ((plus m n) ** (rewrite associativePlus m n l in 
+                                                    (rewrite prfG in Refl)))
+                                                    
+||| Property 15 - if a >= b >= c then a >= c
+public export 
+order_property15 : (a : Nat) -> (b : Nat) -> (c : Nat) -> (geq a b) -> (geq b c) -> (geq a c)
+order_property15 a b c (k ** prfK) (l ** prfL) = ((plus k l) ** (rewrite associativePlus k l c in 
+                                                                (rewrite (symmetry prfL) in prfK)))
+	                                                  
                                                                
                                                                       
                                                                

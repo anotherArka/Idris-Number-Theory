@@ -4,8 +4,6 @@ import equivalence_of_equality
 import associativePlus
 import commutativePlus
 
-%default total
-
 public export
 
 mult_n_Z_is_Z : (n : Nat) -> (mult n Z = Z)

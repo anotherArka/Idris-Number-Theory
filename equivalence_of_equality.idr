@@ -1,7 +1,5 @@
 module equivalence_of_equality
 
-%default total
-
 public export	
 
 symmetry : (a = b) -> (b = a)

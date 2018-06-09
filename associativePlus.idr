@@ -2,8 +2,6 @@ module associativePlus
 
 import equivalence_of_equality
 
-%default total
-
 public export
 
 associativePlus : (a : Nat) -> (b : Nat) -> (c : Nat) -> ((a + b) + c = a + (b + c))

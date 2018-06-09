@@ -7,8 +7,6 @@ import associativeMult
 import commutativeMult
 import equivalence_of_equality
 
-%default total
-
 
 ||| Property 1 - Z is not a successor of any natural number
 public export

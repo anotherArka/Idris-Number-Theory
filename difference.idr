@@ -6,8 +6,7 @@ import equivalence_of_equality
 import commutativeMult
 import distributiveMultAdd
 import properties_of_Nat
-
-%default total
+import properties_of_order
 
 public export
 
@@ -36,7 +35,7 @@ diff_property1 : (a : Nat) -> ((difference a Z) = a)
 diff_property1 Z = Refl
 diff_property1 (S a) = Refl
 
-||| Property 2 - a + (difference a b) = b
+||| Property 2 - a + (difference a b) = b or b + (difference a b) = a
 public export
 
 diff_property2 : (a : Nat) -> (b : Nat) -> (let k = (difference a b) in coProduct (plus k a = b) (plus k b = a))
@@ -109,6 +108,29 @@ diff_property7 a b prfDif = (rewrite symmetry (diff_property6 a (difference a b)
                             (rewrite commutativePlus b (difference a b) in    
                             (rewrite prfDif in 
                             (rewrite diff_property5 b a in Refl))))
+                            
+||| Property 8 - a >= b implies b + difference a b = a
+public export
+diff_property8 : (a : Nat) -> (b : Nat) -> (geq a b) -> ((plus (difference a b) b) = a)
+diff_property8 a b (k ** prfK) = case diff_property2 a b of
+                                    (False ** prfDif) => prfDif 
+                                    (True ** prfDif) => rewrite prfK in 
+                                                       (rewrite diff_property5 k b in Refl)
+                                    
+||| Property 9 - (difference (S a) (S b)) <= a given a > b
+public export
+diff_property9 : (a : Nat) -> (b : Nat) -> (geq a b) -> (geq a (difference (S a) (S b)))
+diff_property9 a b (k ** prfK) = (rewrite prfK in 
+                                 (rewrite diff_property5 k b in 
+                                 (rewrite commutativePlus k b in (b ** Refl))))
+                                 
+||| Property 10 - difference a b = difference b a
+public export
+diff_property10 : (a : Nat) -> (b : Nat) -> (difference a b) = (difference b a)
+diff_property10 Z Z = Refl
+diff_property10 (S a) Z = Refl
+diff_property10 Z (S a) = Refl
+diff_property10 (S a) (S b) = diff_property10 a b
 
 
 
@@ -116,36 +138,9 @@ diff_property7 a b prfDif = (rewrite symmetry (diff_property6 a (difference a b)
 
 
 
-{-
-diff_property7 (S a) (S b) prfDif2 = (rewrite symmetry (diff_property6 (S a) (difference a b) b) in 
-                                     (rewrite commutativePlus b (difference a b) in 
-                                     (rewrite prfDif2 in 
-                                     (rewrite commutativePlus b (S a) in 
-                                     (rewrite commutativePlus a b in
-                                     (rewrite diff_property5 (S b) a in Refl))))))
-                          	 
 
 
 
 
-case diff_property2 a b of
-                                  (False ** prfDif2) => (rewrite symmetry (diff_property6 (S a) (difference a b) b) in 
-                                                        (rewrite commutativePlus b (difference a b) in 
-                                                        (rewrite prfDif2 in 
-                                                        (rewrite commutativePlus b (S a) in 
-                                                        (rewrite commutativePlus a b in
-                                                        (rewrite diff_property5 (S b) a in Refl))))))
-                          	
-                                  (True ** prfDif1) => case diff_property2 (S a) (difference a b) of 
-                                                            (True ** prfDif11) => ?rhs1
-                                                            (False ** prfDif12) => ?rhs2
--}                               
-                                  
-                                                             
-                                                             
-                                                             
-                                                             
-                                                             
-                                                             
-                                                             
-                                                             
+
+
