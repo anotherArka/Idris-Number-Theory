@@ -5,9 +5,9 @@ Final Goal - To write a gcd function which gives the gcd of two numbers along wi
 
 Next step - 1. To identify several important properties of natural numbers and prove them in idris
 
-            2. To create a separate file containing useful equalities to manipulate natural numbers
+            2. To create a separate file containing useful equalities to manipulate natural number
             
-            3. Find a total definition of Gcd
+            3. Tidy things up to make it more readable
             
             
 
@@ -33,5 +33,12 @@ commutativeMult - Proof that mult is commutative.
 
 properties_of_divisibility - basic properties of divisibility
 
+coProductType - definition of coProductType
 
-myGcd- Trying to give a total definition of Gcd which gives the gcd of two numbers along with the proof that the result is correct. I have given one definition using Euclid's algorithm which Idris is not accepting as total.
+congruence - my definition of congruence. Which is just an explicit version of cong in idris
+
+difference - definition of difference between two natural numbers along with useful properties
+
+total_Gcd - a total definition of the Gcd function which just gives the gcd of two natural numbers.
+
+myGcd- Total definition of Gcd which gives the gcd of two numbers along with the proof that the result is correct.
