@@ -2,8 +2,8 @@ module coProductType
 
 public export
 
-coProduct : (A : Type) -> (B : Type) -> Type
-coProduct A B = (p : Bool ** (AorB A B p)) where 
+coProduct : (a : Type) -> (b : Type) -> Type
+coProduct a b = (p : Bool ** (AorB a b p)) where
                                             AorB : Type -> Type -> Bool -> Type
-                                            AorB A B True = A
-                                            AorB A B False = B
+                                            AorB a b True = a
+                                            AorB a b False = b
